@@ -1,0 +1,30 @@
+@media screen and (max-width: 400px){
+
+	#page-heading{
+		font-size: 1.8em ;
+		font-weight: 700 ;
+	}
+
+	.button{
+		font-size: 0.68em !important;
+		padding-left: 8px !important;
+		padding-right: 8px !important;
+		margin-top: 5px !important;
+	}
+
+	.html-entity{
+
+		margin-right: 8px !important;
+	}
+
+	.btn{
+		font-size: 0.9em ;
+		padding : 10px ;
+	}
+
+	.questions , .options, .instructions{
+
+		font-size: 0.8em;
+	}
+
+}

@@ -1,0 +1,54 @@
+<div class="container poll-pad">
+	<div class="row">	
+		<div class="col-sm-12">
+
+			<p class="text-center title-poll">{{ pollSurvey.singleSurvey.surveyTitle |capitalize }}</p>
+			<p class="subtitle" ng-if="pollSurvey.question">{{ pollSurvey.singleSurvey.surveySubtitle | capitalize }}</p>
+			<p ng-if="pollSurvey.question" class="instructions"> 
+				<strong>Instructions :</strong> {{ pollSurvey.singleSurvey.instructions | capitalize}}
+			</p>
+			<br>
+
+
+			<p ng-if="pollSurvey.question" class="questions">
+				<strong>Q. {{pollSurvey.question.questionText | capitalize }} </strong>
+			</p>
+
+			<div ng-if="pollSurvey.question" class="options">
+				<form >
+					<div ng-repeat=" option in pollSurvey.question.questionOptions track by $index" ng-init="id=$index">	
+						<label ng-if="option">
+							<input type="radio" name="options" value="{{id}}" 
+									ng-model="pollSurvey.answer" 
+									ng-change="pollSurvey.changeDisableValue();">
+							<span> {{option | capitalize }}</span>
+						</label>
+					</div>
+					<br>	
+					<input type="button" name="next" class="btn btn-primary" ng-value="pollSurvey.buttonValue" 
+								ng-click="pollSurvey.loadNextQuestion(pollSurvey.question.questionId);" 
+								ng-disabled="pollSurvey.disableValue">
+					<input type="button" name="skip" class="btn btn-primary" value="Skip" 
+								ng-click="pollSurvey.skipQuestion(pollSurvey.question.questionId);">
+				</form>	
+			</div>
+
+
+			<p ng-if="!pollSurvey.question && pollSurvey.questionData.length" class="text-center lead">
+				Thanks for taking part in survey! Your Opinion Matters
+			</p>
+
+			<p ng-if="!pollSurvey.questionData.length" class="text-center lead"> 
+				This survey is under construction. Please check later!
+			</p>
+
+			<br>
+			<div >
+				<a href="#/takeSurvey" class="btn btn-info">&#x261A;Back</a>
+			</div>
+				
+		</div>
+	</div>
+
+
+</div>

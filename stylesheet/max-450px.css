@@ -1,0 +1,35 @@
+@media screen and (max-width:450px){
+
+	nav{
+		font-size: 0.9em;
+	}
+	
+	h2 {
+
+		font-size: 1.5em;
+	}
+
+	.lead ,  .subtitle {
+		font-size: 1em;
+	}
+
+	#question-entry ,.button{
+
+	 	font-size: 0.8em ;
+	}
+
+	.title , .title-poll{
+
+		font-size: 1.2em;
+	}
+
+	.all-survey-head{
+
+		font-size: 1.3em ;
+	}
+
+	.card-survey , .card-poll{
+
+		margin-bottom: 15px;
+	}
+}

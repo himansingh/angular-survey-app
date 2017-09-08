@@ -1,0 +1,18 @@
+<div class="container" id="question-entry" ng-if="loggedIn">
+	<form class="col-md-6" ng-submit="createQuestion.create();">
+		<div class="form-group">
+			<label for="questionText" > <span> Enter your question :</span></label>
+			<br>
+			<input type="text" name="questionText" ng-model="createQuestion.questionText" 
+								id="questionText" class="form-control" autofocus="autofocus"
+								placeholder="Question" required="required">
+		</div>						
+		<input type="submit" name="submit-question" class="btn btn-primary" value="Submit">	
+	</form>
+	<br>
+	<div>
+		
+	</div>
+</div>
+
+<login-directive></login-directive>

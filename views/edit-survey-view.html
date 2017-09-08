@@ -1,0 +1,28 @@
+<div class="container body-color" ng-if="loggedIn">
+
+	<form ng-submit="editSurvey.update();">
+		<div class="form-group col-sm-10 col-md-6">
+			<label for="surveyTitle"></label>
+			<input type="text" name="surveyTitle" id="surveyTitle" class="form-control" autofocus="autofocus" 
+						required="required" placeholder="Enter Survey Title" ng-model="editSurvey.title">			
+		</div>
+		<div class="form-group col-sm-10 col-md-6">
+			<label for="surveySubtitle"></label>
+			<input type="text" name="surveySubtitle" id="surveySubtitle" class="form-control" required="required" 
+					 	placeholder="Enter Survey Subtitle" ng-model="editSurvey.subtitle">
+		</div>
+		<div class="form-group col-sm-10 col-md-6">
+			<label for="description"></label>
+			<textarea class="form-control" required="required" rows="5" placeholder="Enter brief instruction for the survey" id="description" ng-model="editSurvey.instructions"></textarea>				
+		</div>
+		<input type="submit" class="btn btn-info" value="Submit" style="margin-left: 15px;"> 
+	</form>
+
+	<div style="float: right;">
+		<button class="btn btn-info" ng-click="editSurvey.goBack();"> &#9754; Back</button>
+	</div>	
+	<br>
+	<br>
+</div>
+
+<login-directive></login-directive>

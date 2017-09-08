@@ -1,0 +1,47 @@
+    <section id="start" style="margin-top: -30px; margin-bottom: -30px;">
+      <div class="container-fluid">
+
+        <!--User Section-->
+        <div class="row" style="padding-bottom: 50px;">
+          <div class="col-md-8 col-sm-10 mx-auto">
+            <div class="card">
+              <a href="#/takeSurvey"> 
+                <h2>Take survey</h2>
+                <p class="lead"> Help us in finding public opinion by taking a quick and easy to use survey. &#9786;</p>
+              </a>
+            </div>  
+          </div>
+        </div>
+
+        <!--Admin's section-->
+        <div class="row" ng-if="loggedIn">
+          <div class="col-md-8 col-sm-10 mx-auto">
+            <div class="card">
+              <h2>Manage your survey</h2><small> (for admin only) </small>
+              <p class="lead"> Here you can manage an existing survey or create a new one.</p>
+              <p> Create a survey <br> Give a brief and easily understandable description to survey &#x261F;</p>
+              <a class="btn btn-success" href="#/create"> Create Survey </a> 
+              <p><br> Check all details and modify if needed &#x261F;</p>  
+              <a class="btn btn-success" href="#/survey/viewAll"> Update/Modify Survey </a> 
+            </div>   
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <div class='row' ng-if="!loggedIn">
+          <form class="col-sm-6 col-10 mx-auto card" ng-submit="logMeIn(userName , password);">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username"  placeholder="Username" ng-model="userName">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Password" ng-model="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+   

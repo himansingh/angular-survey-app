@@ -1,0 +1,139 @@
+<div class="container" ng-if="loggedIn">
+	<div class="row">
+
+		<!--Card containing survey title subtitle and instructions-->
+		<div class="col-md-2"></div>
+		<div class="col-md-8 card-survey" id="single-survey-card">
+			<p class="title">{{survey.singleSurvey.surveyTitle | capitalize}}</p>
+			<p class="subtitle">{{ survey.singleSurvey.surveySubtitle | capitalize}}</p>
+			<p class="instructions"><strong>Instructions : </strong>{{ survey.singleSurvey.instructions | capitalize }}</p>
+
+			<div ng-repeat="questions in survey.singleSurvey.questions" ng-if="survey.singleSurvey.questions.length">
+				<p ng-if="question">{{questions}}</p>
+			</div>
+
+			<a ng-href="#/edit/{{survey.singleSurvey.surveyId}}" name="edit-button" class="btn btn-outline-info">
+				Edit 
+			</a>
+			<input type="button" name="delete-button" class="btn btn-outline-danger" 
+							ng-click="survey.delete(survey.singleSurvey.surveyId);" value="Delete">
+			<a ng-href="#/createquestion/{{survey.singleSurvey.surveyId}}" name="edit-button" class="btn btn-outline-info">
+				Add question
+			</a>
+		</div>
+		<div class="col-md-2"></div>
+		<!-- Card ends here -->
+			
+
+		<!-- Section containing questions and options. All options including null are shown so that admin can delete them -->
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+
+			<div ng-repeat="question in survey.questions" ng-init="id = $index">
+				<div class="questions">
+					<strong>{{id+1}}. {{question.questionText | capitalize}}</strong>
+
+					<input type="button" name="deleteQuestion" class="btn btn-light html-entity" value="&#10060;" 
+								title="Delete Question" ng-click="survey.removeQuestion(question.questionId , id)">
+
+					<input type="button" name="editQuestion" class="btn btn-light html-entity" 
+								ng-click="survey.showQuestionForm(question.questionId, question.questionText, id)"
+								title="Edit Question" value="&#x270E;">
+				</div>
+
+				<div ng-repeat="option in question.questionOptions track by $index" ng-init="pos = $index">
+					<div class="options">{{pos+1}}. {{option |capitalize}} </div>
+				</div>	
+				<br>
+
+				<div>
+					<input type="button" name="add-option" value="Add option" class="btn btn-info button" 
+										ng-click="survey.showForm(id);">
+
+					<input type="button" name="delete-options" value="Delete all options" class="btn btn-info button" 
+										ng-click="survey.removeOptions(question.questionId , id);">
+
+					<input type="button" name="delete-answer" value="Delete answers" class="btn btn-info button"
+										 ng-click="survey.removeAnswers(question.questionId , id);">
+					 
+				</div>
+				<br>
+						<!-- Form to show input box when user clicks on add option button -->
+
+				<form class="form-group" ng-if="survey.show[id] === true" ng-submit="survey.createOption(question.questionId , id)">
+					<input type="text" class="form-control" placeholder="Enter option" 
+											ng-model='survey.option[id]' required="removeOptions">
+					<br>
+					<input type="submit" class="btn btn-info" value="Submit" ng-show="survey.option[id]">
+				</form>
+
+
+				<!-- Form to show input box when user clicks on add question button -->
+
+				<form class="form-group" ng-if="survey.showQuestionInput[id] === true" 
+											ng-submit="survey.updateQuestion(question.questionId , question.questionText , id)">
+					<input type="text" class="form-control" placeholder="Enter question" 
+											ng-model='question.questionText' required="required">
+					<br>
+					<input type="submit" class="btn btn-info" value="Submit" >
+				</form>
+
+				<hr><br>
+			</div>
+
+		</div>
+		<div class="col-md-2"></div>
+		<!-- questions and options section ends here -->
+
+
+		 <!-- 	**********	Toggle Stats/Answers of survey	************* -->
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<input type="button" name="show-stats" value="Show/Hide Stats" class="btn btn-warning button" 
+									ng-click="survey.showHideStats();" style="width: 100%;">
+		</div>
+		<div class="col-md-3"></div>
+
+		<div class="col-md-2" ng-if="survey.showHide && survey.surveyTaken"></div>
+		<div class="col-md-8" ng-if="survey.showHide && survey.surveyTaken">
+
+				<!-- Stats section starts here -->
+			<div ng-repeat="statsResult in survey.statsResult" ng-init="index = $index">
+				<div style="padding-top: 25px; padding-bottom: 25px;" class="questions">
+					<strong>Stats for Question No. {{index+1}} </strong>
+				</div>
+				<table  class="table table-bordered table-responsive">
+					<thead class="questions">
+						<th>Option No.</th>
+						<th>No. of responses</th>
+					</thead>
+					<tbody ng-repeat=" result in statsResult track by $index" ng-init="opt = $index">
+						<tr class="options">
+							<td ng-if="opt==0">Skipped question</td> 
+							<td ng-if="opt != 0"> Option {{opt}}</td>
+							<td>{{result}}</td>
+						</tr>
+					</tbody>
+				</table>	
+			</div>
+
+		</div>
+		<div class="col-md-2" ng-if="survey.showHide && survey.surveyTaken"></div>
+		<br>
+		<div class="col-md-12 text-center options" ng-if="survey.showHide && !survey.surveyTaken">
+			<strong> No submission yet.</strong>
+		</div>
+		<!-- ********* Stats section ends here ********	-->
+
+		<br>
+		<div class="col-md-2"></div>
+		<div>
+			<br>
+			<a href="#survey/viewAll" class="btn btn-info" style="margin-left: 15px;"><strong>&#9754;</strong> Back</a>
+		</div>
+
+	</div>
+	<br>	
+</div>
+
+<login-directive></login-directive>

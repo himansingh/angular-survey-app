@@ -1,0 +1,41 @@
+<div class="container" ng-if="loggedIn">
+   <div class="row">
+      <div class="col-sm-12 text-center">
+      <p class="all-survey-head">List of survey</p>
+         </div>
+   </div>
+
+   <div class="row"> 
+      <div class="col-sm-6 col-lg-4" ng-repeat="survey in allSurvey.surveys" ng-init="id=$index">
+         <div  class="card-survey"> 
+            <div class="title">
+               <a ng-href="#/survey/{{survey.surveyId}}" class="inspect-link"> {{survey.surveyTitle | capitalize }} </a>
+            </div>
+            <br>
+            <div class="row">
+               <div class="col-sm-4 col-4 text-center">
+                  <a ng-click="allSurvey.delete(survey.surveyId);" >
+                     <div class="tiles"> Delete </div>
+                  </a>   
+               </div>
+               <div class="col-sm-4 col-4 text-center " >
+                  <a ng-href="#/edit/{{survey.surveyId}}" >
+                     <div class="tiles"> Edit </div>
+                  </a>   
+               </div>
+               <div class="col-sm-4 col-4 text-center">
+                  <a ng-href="#/survey/{{survey.surveyId}}" >
+                     <div class="tiles"> Inspect</div>
+                  </a>   
+               </div>
+            </div> 
+         </div>
+      </div>      
+   </div>
+   
+   <br>
+   <a href="#/" class="btn btn-info"> &#x261A;Back </a>
+</div>
+
+<login-directive></login-directive>
+

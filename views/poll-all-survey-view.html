@@ -1,0 +1,20 @@
+<div class="container poll-pad">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <p class="all-survey-head">Which Survey would you like to take?</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-lg-4" ng-repeat="survey in allSurvey.surveys">
+      <a ng-href="#/takeSurvey/{{survey.surveyId}}">  
+        <div  class="card-poll">          
+          <p class="title"> {{survey.surveyTitle | capitalize}}</p>
+          <p class="subtitle"> {{survey.surveySubtitle | capitalize}}</p>                 
+        </div>
+      </a>   
+    </div>    
+  </div>
+  <br>
+  <a href="#/" class="btn btn-info"> &#x261A;Back </a>
+</div>   
+

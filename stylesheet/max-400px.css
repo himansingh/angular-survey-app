@@ -6,7 +6,7 @@
 	}
 
 	.button{
-		font-size: 0.68em !important;
+		font-size: 15px !important;
 		padding-left: 8px !important;
 		padding-right: 8px !important;
 		margin-top: 5px !important;
@@ -18,13 +18,13 @@
 	}
 
 	.btn{
-		font-size: 0.9em ;
+		font-size: 1em ;
 		padding : 10px ;
 	}
 
 	.questions , .options, .instructions{
 
-		font-size: 0.8em;
+		font-size: 0.95em;
 	}
 
 }

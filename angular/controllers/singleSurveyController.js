@@ -168,11 +168,13 @@ app.controller('singleSurveyController',['getAndPostService','$routeParams','$ro
 
 	// function to get user's confirmation before deleting answers
 	this.removeAnswers = function(questionId , id){
-
+		console.log(main.questions[id].answers);
 		if( confirm("Do you want to delete answers for question No."+(id+1)+"\n\nYou might want to have a look at stats before proceeding.") ){
 
 			main.removeAnswersRequest(questionId) ;
-			$route.reload();
+			main.questions[id].answers.splice(0);
+			main.calculateStats(); // recalculating stats after deleting answers
+			
 		}
 
 	} ; // end of removeAnswers function
@@ -214,6 +216,7 @@ app.controller('singleSurveyController',['getAndPostService','$routeParams','$ro
 	// function for simple stats calculation 
 	this.calculateStats = function(){
 
+		main.statsResult = [];
 		var questions = main.questions ;
 		//console.log("main.questions",questions);
 		for( var i in questions){

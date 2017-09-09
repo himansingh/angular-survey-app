@@ -42,12 +42,12 @@ app.controller('allSurveyController',['getAndPostService','$route', function(get
 
 
 	// function to get user confirmation to delete survey	
-	this.delete = function(surveyId){
+	this.delete = function(surveyId , index){
 
 		var confirmation = confirm("Do you really want to delete this survey? \n It can't be undone later.");
 
 		if(confirmation){
-			main.deleteRequest(surveyId);
+			main.deleteRequest(surveyId , index);
 			main.surveys.splice(index , 1);
 		} // end of if statement
 

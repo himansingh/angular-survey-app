@@ -1,6 +1,8 @@
 app.service('getAndPostService',['$http', function($http){
 
+
 	var baseUrl = "https://projectsapi.edwisor.com/api/surveys/" ;
+
 
 	this.getSingleSurvey = function(surveyId){
 
@@ -34,9 +36,9 @@ app.service('getAndPostService',['$http', function($http){
 
 		return $http({
 
-			method : 'POST' ,
-			url : baseUrl + "questions/" + questionId + "/answer/create" ,
-			data : answer  
+			method 	: 'POST' ,
+			url 	: baseUrl + "questions/" + questionId + "/answer/create" ,
+			data 	: answer  
 		});
 
 	} ;
@@ -92,7 +94,7 @@ app.service('getAndPostService',['$http', function($http){
 
 	this.deleteOptions = function(questionId){
 
-		return $http({ method : 'POST' , url : baseUrl + 'questions/' + questionId +'/options/delete'  }) ;
+		return $http({ method : 'POST', url : baseUrl + 'questions/' + questionId +'/options/delete'  }) ;
 	} ;
 
 

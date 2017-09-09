@@ -48,8 +48,7 @@ app.controller('allSurveyController',['getAndPostService','$route', function(get
 
 		if(confirmation){
 			main.deleteRequest(surveyId);
-			$route.reload();  // reload the view to show updated page
-
+			main.surveys.splice(index , 1);
 		} // end of if statement
 
 	}; // end of delete function

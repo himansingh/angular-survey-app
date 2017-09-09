@@ -3,14 +3,16 @@
 		<div class="col-sm-12">
 
 			<p class="text-center title-poll">{{ pollSurvey.singleSurvey.surveyTitle |capitalize }}</p>
-			<p class="subtitle" ng-if="pollSurvey.question">{{ pollSurvey.singleSurvey.surveySubtitle | capitalize }}</p>
-			<p ng-if="pollSurvey.question" class="instructions"> 
+			<p class="subtitle" >{{ pollSurvey.singleSurvey.surveySubtitle | capitalize }}</p>
+			<p class="instructions"> 
 				<strong>Instructions :</strong> {{ pollSurvey.singleSurvey.instructions | capitalize}}
 			</p>
 			<br>
+			<div ng-if="!pollSurvey.hideStartButton && pollSurvey.questionData.length">
+				<input type="button" name="Start-survey" class="btn btn-info" value="Start survey" ng-click="pollSurvey.startSurvey()">
+			</div>
 
-
-			<p ng-if="pollSurvey.question" class="questions">
+			<p ng-if="pollSurvey.question && pollSurvey.showSurvey" class="questions">
 				<strong>Q. {{pollSurvey.question.questionText | capitalize }} </strong>
 			</p>
 
@@ -34,7 +36,7 @@
 			</div>
 
 
-			<p ng-if="!pollSurvey.question && pollSurvey.questionData.length" class="text-center lead">
+			<p ng-if="!pollSurvey.question && pollSurvey.questionData.length && pollSurvey.showSurvey" class="text-center lead">
 				Thanks for taking part in survey! Your Opinion Matters
 			</p>
 

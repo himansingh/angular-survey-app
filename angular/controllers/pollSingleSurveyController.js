@@ -5,6 +5,7 @@ app.controller('pollSingleSurveyController',['getAndPostService','$routeParams',
 	var i = 0 , data ; 	// i is used to keep track of question displayed in the view
 	this.disableValue ; // used to enable and disable next button 
 	this.buttonValue = 'Next' ;
+	this.hideStartButton = false ;
 
 	//load a survey
 	this.loadSingleSurvey = function(){
@@ -87,7 +88,7 @@ app.controller('pollSingleSurveyController',['getAndPostService','$routeParams',
 			main.questionData = response.data.data ;
 			console.log('response of loadQuestions');
 			console.log(main.questionData);
-			main.loadNextQuestion(); 
+			//main.loadNextQuestion(); 
 
 		} , function(response){
 
@@ -97,6 +98,15 @@ app.controller('pollSingleSurveyController',['getAndPostService','$routeParams',
 
 	}(); // end of loadQuestions function
 
+
+	// function to start a survey when start button is clicked
+	this.startSurvey = function(){
+
+		main.loadNextQuestion();
+		main.hideStartButton = true;
+		main.showSurvey = true ;
+	}
+
 	
 	// this function is called when user presses skip button
 	this.skipQuestion = function(questionId){
@@ -104,7 +114,6 @@ app.controller('pollSingleSurveyController',['getAndPostService','$routeParams',
 		// -1 becomes 0 when answer is incremented in loadNextQuestion() by 1
 		main.answer = -1 ; 
 		main.loadNextQuestion(questionId) ;
-
 	};//end of skipQuestion function
 
 
